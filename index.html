@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Casefile CAPTCHA</title>
+<link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <div class="board-backdrop">
+    <main class="captcha-panel" id="captchaPanel">
+
+      <header class="panel-header">
+        <div class="brand">
+          <span class="brand-badge" aria-hidden="true">CC</span>
+          <div class="brand-text">
+            <h1 class="brand-title">CASEFILE CAPTCHA</h1>
+            <p class="brand-sub">Find the evidence. Solve the case. Prove your eye for detail.</p>
+          </div>
+        </div>
+        <div class="header-right">
+          <button class="sound-toggle" id="soundToggle" type="button" aria-label="Mute sound" aria-pressed="false">
+            <span id="soundIcon">&#128266;</span>
+          </button>
+          <div class="kind-tag">human&#8209;style reasoning challenge</div>
+        </div>
+      </header>
+
+      <!-- BRIEFING: shown before the timer starts, gives the player time to read -->
+      <section class="briefing-screen" id="briefingScreen">
+        <div class="case-meta">
+          <div class="case-id">
+            <span class="case-id-label">CASE</span>
+            <span class="case-id-number" id="briefCaseNumber">01</span>
+          </div>
+          <div class="case-copy">
+            <h2 class="case-title" id="briefCaseTitle">Loading case&hellip;</h2>
+            <p class="case-setup" id="briefCaseSetup"></p>
+          </div>
+        </div>
+        <ul class="briefing-rules">
+          <li>You'll have <strong>30 seconds</strong> once the clock starts.</li>
+          <li>Click or tap each object that matches the evidence checklist.</li>
+          <li>Not everything in the scene is a clue &mdash; some details are just scenery.</li>
+        </ul>
+        <button class="btn btn-primary briefing-start" id="startBtn" type="button">Start Investigation</button>
+      </section>
+
+      <!-- GAME VIEW: hidden until "Start Investigation" is pressed -->
+      <div class="game-view" id="gameView" hidden>
+
+        <section class="case-meta">
+          <div class="case-id">
+            <span class="case-id-label">CASE</span>
+            <span class="case-id-number" id="caseNumber">01</span>
+          </div>
+          <div class="case-copy">
+            <h2 class="case-title" id="caseTitle">Loading case&hellip;</h2>
+            <p class="case-setup" id="caseSetup"></p>
+          </div>
+          <div class="case-timer" role="timer" aria-live="off">
+            <span class="timer-label">TIME LEFT</span>
+            <span class="timer-value" id="timerValue">00:30</span>
+          </div>
+        </section>
+
+        <div class="status-row">
+          <div class="progress-pill" id="progressPill" aria-live="polite">0 / 0 clues found</div>
+          <div class="toast" id="feedbackToast" aria-live="polite"></div>
+        </div>
+
+        <section class="scene-wrap">
+          <div class="scene-frame" id="sceneFrame">
+            <!-- SVG scene injected here -->
+          </div>
+        </section>
+
+        <section class="checklist-wrap">
+          <h3 class="checklist-title">Evidence Checklist</h3>
+          <ul class="checklist" id="checklist"></ul>
+        </section>
+
+        <div class="action-row">
+          <button class="btn btn-ghost" id="restartBtn" type="button">Restart challenge</button>
+          <button class="btn btn-ghost" id="newCaseBtn" type="button">Try another case</button>
+          <button class="btn btn-primary" id="submitBtn" type="button" disabled>Submit Case</button>
+        </div>
+      </div>
+
+      <div class="result-overlay" id="resultOverlay" hidden>
+        <div class="result-card" id="resultCard" role="alertdialog" aria-labelledby="resultHeadline">
+          <p class="result-kicker" id="resultKicker">VERIFICATION RESULT</p>
+          <h2 class="result-headline" id="resultHeadline">&nbsp;</h2>
+          <p class="result-explain" id="resultExplain"></p>
+          <p class="result-score" id="resultScore"></p>
+          <div class="result-actions">
+            <button class="btn btn-primary" id="resultNewCaseBtn" type="button">Try another case</button>
+            <button class="btn btn-ghost" id="resultRestartBtn" type="button">Restart challenge</button>
+          </div>
+        </div>
+      </div>
+
+      <footer class="panel-footer">
+        A playful human-reasoning demo &mdash; not a security product.
+      </footer>
+    </main>
+  </div>
+
+  <script src="js/sfx.js"></script>
+  <script src="js/cases.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
